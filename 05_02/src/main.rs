@@ -36,11 +36,13 @@ fn main() {
         let num_to_move: usize = line[1].parse().unwrap();
         let start_stack: usize = line[3].parse::<usize>().unwrap() - 1;
         let end_stack: usize = line[5].parse::<usize>().unwrap() - 1;
-        let mut temp: char;
+        let mut temp: Vec<char> = Vec::new();
 
         for _ in 0..num_to_move {
-            temp = cargo_array[start_stack].pop().unwrap();
-            cargo_array[end_stack].push(temp);
+            temp.push(cargo_array[start_stack].pop().unwrap());
+        }
+        for _ in 0..num_to_move {
+            cargo_array[end_stack].push(temp.pop().unwrap());
         }
     }
 
